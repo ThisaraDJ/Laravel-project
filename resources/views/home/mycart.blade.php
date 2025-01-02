@@ -54,9 +54,15 @@
         <tr>
             <td>{{$cart->product->title}}</td>
             <td>{{$cart->product->price}}</td>
-            <td>
-                <img width="150" src="/products/{{$cart->product->image}}">
-            </td>
+            <td style="position: relative;">
+        <img width="150" src="/products/{{$cart->product->image}}">
+        <form action="{{ url('remove_cart', $cart->id) }}" method="POST" style="position: absolute; bottom: 10px; right: 10px;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" style="background-color: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">Remove</button>
+        </form>
+    </td>
+            
             @endforeach
         </tr>
 
